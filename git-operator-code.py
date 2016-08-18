@@ -3,6 +3,7 @@ import sys
 import easyGit
 from git import Git
 import commands
+import subprocess
 import math 
 import os  
 
@@ -56,8 +57,10 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             self.command = 'git push origin ' + str(self.comboBranch.currentText())
-            self.output = commands.getstatusoutput(self.command)
-            self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+            #self.output = commands.getstatusoutput(self.command)
+            #self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+            p = subprocess.Popen([self.command], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            stdout, stderr = p.communicate(input='password\nauth username\nauth password\n')
 
 
 def main():
