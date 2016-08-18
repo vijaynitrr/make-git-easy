@@ -59,7 +59,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.command = 'git push origin ' + str(self.comboBranch.currentText())
             #self.output = commands.getstatusoutput(self.command)
             #self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
-            p = subprocess.Popen([self.command], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+            p = subprocess.Popen(['git push origin ' + str(self.comboBranch.currentText())], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             stdout, stderr = p.communicate(input='password\nauth username\nauth password\n')
 
 
