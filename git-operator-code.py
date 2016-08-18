@@ -16,7 +16,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.commitBtn.clicked.connect(self.validateAndPush)  
                                                             
     def selectFile(self):
-        self.directoryName = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory', '/var/www/html/naukri')
+        self.directoryName = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory', '/home/motu/Downloads/python-content')
         self.textFile.setText(self.directoryName)
         self.getBranchNames()
 
