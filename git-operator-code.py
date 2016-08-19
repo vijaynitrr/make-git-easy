@@ -19,6 +19,9 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
     def selectFile(self):
         self.directoryName = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory', '/home/motu/Downloads/python-content')
         self.textFile.setText(self.directoryName)
+        self.command = 'git pull'
+        self.output = commands.getstatusoutput('git pull')
+        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
         self.getBranchNames()
 
     def getBranchNames(self):
@@ -56,9 +59,17 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.command = 'git commit -m ' + self.message
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+            self.output = commands.getstatusoutput('grep -ic "machine github.com" ~/.netrc | wc -l')
+            if self.output == '0':
+                self.username = 'vijaynitrr'
+                self.password = 'vk@#9717'
+                self.pushLine = 'machine github.com username ' + self.username + ' password '+self.password
+                self.output = commands.getstatusoutput('echo ' + self.pushLine + ' | cat > ~/.netrc')
+                self.output = commands.getstatusoutput('chmod 0600 ~/.netrc')
+
             self.command = 'git push origin ' + str(self.comboBranch.currentText())
-            #self.output = commands.getstatusoutput(self.command)
-            #self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+            self.output = commands.getstatusoutput(self.command)
+            self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             p = subprocess.Popen(['git push origin master'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
             stdout, stderr = p.communicate(input='password\nauth username\nauth password\n')
 
