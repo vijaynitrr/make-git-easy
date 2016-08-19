@@ -19,9 +19,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
     def selectFile(self):
         self.directoryName = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory', '/home/motu/Downloads/python-content')
         self.textFile.setText(self.directoryName)
-        self.command = 'git pull'
-        self.output = commands.getstatusoutput('git pull')
-        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
         self.getBranchNames()
 
     def getBranchNames(self):
@@ -34,6 +31,9 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
 
         item = self.comboBranch.model().item(0)
         item.setData(QtGui.QColor('green'), QtCore.Qt.ForegroundRole)
+        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+        self.command = 'git pull'
+        self.output = commands.getstatusoutput('git pull')
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
         self.getTags()
 
@@ -59,7 +59,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.command = 'git commit -m ' + self.message
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
-            self.output = commands.getstatusoutput('grep -ic "machine github.com" ~/.netrc | wc -l')
+            self.output = commands.getstatusoutput('grep -i "machine github.com" ~/.netrc | wc -l')
             print self.output
             if self.output == 0:
                 self.username = 'vijaynitrr'
