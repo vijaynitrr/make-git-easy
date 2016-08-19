@@ -60,7 +60,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             self.output = commands.getstatusoutput('grep -i "machine github.com" ~/.netrc | wc -l')
-            print self.output[1]
             if self.output[1] == '0':
                 print 'aaya'
                 self.username = 'vijaynitrr'
@@ -70,6 +69,9 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
                 self.output = commands.getstatusoutput('chmod 0600 ~/.netrc')
 
             self.command = 'git push origin ' + str(self.comboBranch.currentText())
+            self.output = commands.getstatusoutput(self.command)
+            self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+            self.command = 'git tag ' + str(self.comboTag.currentText())
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             self.command = 'git push origin ' + str(self.comboTag.currentText())
