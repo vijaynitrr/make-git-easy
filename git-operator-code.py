@@ -64,7 +64,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             if self.output[1] == 0:
                 self.username = 'vijaynitrr'
                 self.password = 'vk@#9717'
-                self.pushLine = 'machine github.com username ' + self.username + ' password '+self.password
+                self.pushLine = 'machine github.com login ' + self.username + ' password '+self.password
                 self.output = commands.getstatusoutput('echo ' + self.pushLine + ' | cat > ~/.netrc')
                 self.output = commands.getstatusoutput('chmod 0600 ~/.netrc')
 
