@@ -79,6 +79,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.command = 'git push origin ' + str(self.comboTag.currentText())
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+            self.textOutput.moveCursor(QtGui.QTextCursor.End)
 
 
 def main():
