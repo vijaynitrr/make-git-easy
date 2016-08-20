@@ -2,54 +2,108 @@
 <ui version="4.0">
  <class>Dialog</class>
  <widget class="QDialog" name="Dialog">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>372</width>
+    <height>214</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Git Login</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <property name="modal">
+   <bool>false</bool>
+  </property>
+  <widget class="QPushButton" name="submitBtn">
    <property name="geometry">
     <rect>
-     <x>130</x>
+     <x>120</x>
      <y>150</y>
-     <width>97</width>
-     <height>27</height>
+     <width>111</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Submit</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="name">
+  <widget class="QTextEdit" name="textName">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>130</x>
      <y>40</y>
-     <width>191</width>
+     <width>210</width>
      <height>31</height>
     </rect>
    </property>
+   <property name="acceptDrops">
+    <bool>true</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#textName {
+padding-left: 1px;
+padding-top: 1px;
+}</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhMultiLine</set>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Sunken</enum>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="sizeAdjustPolicy">
+    <enum>QAbstractScrollArea::AdjustIgnored</enum>
+   </property>
+   <property name="tabChangesFocus">
+    <bool>true</bool>
+   </property>
+   <property name="lineWrapMode">
+    <enum>QTextEdit::WidgetWidth</enum>
+   </property>
+   <property name="textInteractionFlags">
+    <set>Qt::TextEditable</set>
+   </property>
+   <property name="placeholderText">
+    <string>Enter your gitub username</string>
+   </property>
   </widget>
-  <widget class="QTextEdit" name="password">
+  <widget class="QTextEdit" name="textPassword">
    <property name="geometry">
     <rect>
-     <x>180</x>
+     <x>130</x>
      <y>90</y>
-     <width>191</width>
+     <width>210</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">#textPassword {
+padding-left: 1px;
+padding-top: 1px;
+}</string>
+   </property>
+   <property name="horizontalScrollBarPolicy">
+    <enum>Qt::ScrollBarAlwaysOff</enum>
+   </property>
+   <property name="tabChangesFocus">
+    <bool>true</bool>
+   </property>
+   <property name="placeholderText">
+    <string>Enter your github password</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>50</x>
      <y>45</y>
      <width>81</width>
      <height>20</height>
@@ -62,7 +116,7 @@
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>50</x>
      <y>95</y>
      <width>81</width>
      <height>20</height>

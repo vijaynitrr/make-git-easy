@@ -1,7 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys  
 import easyGit
-from git import Git
 import commands
 import subprocess
 import math 
@@ -14,12 +13,18 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.command = self.output = ''
         self.setupUi(self)
         self.fileBtn.clicked.connect(self.selectFile)
+        self.pullBtn.clicked.connect(self.takePull)
         self.commitBtn.clicked.connect(self.validateAndPush)  
                                                             
     def selectFile(self):
         self.directoryName = QtWidgets.QFileDialog.getExistingDirectory(self, 'Select Directory', '/home/motu/Downloads/python-content')
         self.textFile.setText(self.directoryName)
         self.getBranchNames()
+
+    def takePull(self):
+        self.command = 'git pull --rebase'
+        self.output = commands.getstatusoutput('git pull')
+        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
 
     def getBranchNames(self):
         os.chdir(self.textFile.toPlainText())
@@ -31,9 +36,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
 
         item = self.comboBranch.model().item(0)
         item.setData(QtGui.QColor('green'), QtCore.Qt.ForegroundRole)
-        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
-        self.command = 'git pull'
-        self.output = commands.getstatusoutput('git pull')
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
         self.getTags()
 

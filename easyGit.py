@@ -17,8 +17,10 @@ class Ui_MainWindow(object):
         self.textFile = QtWidgets.QTextEdit(self.centralwidget)
         self.textFile.setGeometry(QtCore.QRect(20, 22, 331, 31))
         self.textFile.setStyleSheet("#textFile {\n"
-"padding: 1px;\n"
+"padding-left: 1px;\n"
+"padding-top: 1px;\n"
 "}")
+        self.textFile.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.textFile.setTabChangesFocus(True)
         self.textFile.setReadOnly(True)
         self.textFile.setObjectName("textFile")
@@ -41,7 +43,7 @@ class Ui_MainWindow(object):
         self.comboBranch.setEditable(True)
         self.comboBranch.setObjectName("comboBranch")
         self.commitBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.commitBtn.setGeometry(QtCore.QRect(180, 172, 181, 41))
+        self.commitBtn.setGeometry(QtCore.QRect(160, 172, 181, 41))
         self.commitBtn.setObjectName("commitBtn")
         self.textOutput = QtWidgets.QTextEdit(self.centralwidget)
         self.textOutput.setGeometry(QtCore.QRect(20, 232, 471, 141))
@@ -55,8 +57,10 @@ class Ui_MainWindow(object):
         self.textMsg = QtWidgets.QTextEdit(self.centralwidget)
         self.textMsg.setGeometry(QtCore.QRect(20, 70, 331, 31))
         self.textMsg.setStyleSheet("#textMsg {\n"
-"padding: 1px;\n"
+"padding-left: 1px;\n"
+"padding-top: 1px;\n"
 "}")
+        self.textMsg.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         self.textMsg.setTabChangesFocus(True)
         self.textMsg.setReadOnly(False)
         self.textMsg.setObjectName("textMsg")
@@ -69,6 +73,12 @@ class Ui_MainWindow(object):
         self.label_errorMsg.setFont(font)
         self.label_errorMsg.setText("")
         self.label_errorMsg.setObjectName("label_errorMsg")
+        self.pullBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.pullBtn.setGeometry(QtCore.QRect(30, 172, 111, 41))
+        self.pullBtn.setObjectName("pullBtn")
+        self.mergeBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.mergeBtn.setGeometry(QtCore.QRect(360, 172, 111, 41))
+        self.mergeBtn.setObjectName("mergeBtn")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -97,4 +107,6 @@ class Ui_MainWindow(object):
 "</style></head><body style=\" font-family:\'Cantarell\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-family:\'Ubuntu\';\"><br /></p></body></html>"))
         self.textMsg.setPlaceholderText(_translate("MainWindow", "Enter your commit message"))
+        self.pullBtn.setText(_translate("MainWindow", "Pull"))
+        self.mergeBtn.setText(_translate("MainWindow", "Merge"))
 
