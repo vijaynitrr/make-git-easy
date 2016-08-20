@@ -1,1 +1,1 @@
-make-git-easy application your daily git operation much more easy.
+make-git-easy application makes your daily git operation much more easy.
