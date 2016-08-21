@@ -18,7 +18,7 @@ class Ui_Dialog(object):
         self.submitBtn = QtWidgets.QPushButton(Dialog)
         self.submitBtn.setGeometry(QtCore.QRect(120, 150, 111, 31))
         self.submitBtn.setObjectName("submitBtn")
-        self.textName = QtWidgets.QTextEdit(Dialog)
+        self.textName = QtWidgets.QLineEdit(Dialog)
         self.textName.setGeometry(QtCore.QRect(130, 40, 210, 31))
         self.textName.setAcceptDrops(True)
         self.textName.setStyleSheet("#textName {\n"
@@ -33,7 +33,7 @@ class Ui_Dialog(object):
         self.textName.setLineWrapMode(QtWidgets.QTextEdit.WidgetWidth)
         self.textName.setTextInteractionFlags(QtCore.Qt.TextEditable)
         self.textName.setObjectName("textName")
-        self.textPassword = QtWidgets.QTextEdit(Dialog)
+        self.textPassword = QtWidgets.QLineEdit(Dialog)
         self.textPassword.setGeometry(QtCore.QRect(130, 90, 210, 31))
         self.textPassword.setStyleSheet("#textPassword {\n"
 "padding-left: 1px;\n"

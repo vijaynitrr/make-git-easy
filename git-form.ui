@@ -16,6 +16,9 @@
   <property name="windowTitle">
    <string>Git Login</string>
   </property>
+  <property name="inputMethodHints">
+   <set>Qt::ImhHiddenText</set>
+  </property>
   <property name="modal">
    <bool>false</bool>
   </property>
@@ -89,6 +92,9 @@ padding-top: 1px;
 padding-left: 1px;
 padding-top: 1px;
 }</string>
+   </property>
+   <property name="inputMethodHints">
+    <set>Qt::ImhHiddenText|Qt::ImhMultiLine</set>
    </property>
    <property name="horizontalScrollBarPolicy">
     <enum>Qt::ScrollBarAlwaysOff</enum>
