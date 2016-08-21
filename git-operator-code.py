@@ -94,6 +94,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             self.output = commands.getstatusoutput('grep -i "machine github.com" ~/.netrc | wc -l')
+            print self.output
             if self.output[1] == '0':
                 self.userLogin()
                 self.pushLine = 'machine github.com login ' + self.username + ' password '+self.password
