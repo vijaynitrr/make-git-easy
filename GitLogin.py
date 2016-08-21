@@ -1,19 +1,14 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys  
-import easyGit
-from GitMerge import Ui_Dialog as GitMergeInfo
 import commands
-import GitMerge
 import GitLoginForm
-import subprocess
-import math 
 import os  
 
 
-class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow): 
-    def __init__(self, parent=None):
-        super(self.__class__, self).__init__(parent)
-        self.command = self.output = self.branches = ''
+class GitLogin(QtWidgets.QMainWindow, GitLoginForm.Ui_MainWindow): 
+    def __init__(self):
+        super(self.__class__, self).__init__()
+        self.command = self.output = ''
         self.setupUi(self)
         self.fileBtn.clicked.connect(self.selectFile)
         self.pullBtn.clicked.connect(self.takePull)
@@ -31,32 +26,15 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
 
     def takeMerge(self):
-        self.dialog = QtWidgets.QDialog()
-        self.dialog.ui = GitMergeInfo()
-        self.dialog.ui.setupUi(self.dialog,self.branches)
-        self.dialog.show()
-        self.dialog.exec_()
-        self.info = self.dialog.ui.info
-        print self.info
-        self.currBranch,self.mergeWithBranch = self.info.split(" ")
-        self.command = 'git checkout ' + self.currBranch
-        self.output = commands.getstatusoutput(self.command)
-        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
-        self.command = 'git merge ' + self.mergeWithBranch
-        self.output = commands.getstatusoutput(self.command)
-        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
-
-    def userLogin(self):
         app = QtWidgets.QApplication(sys.argv)  
-        GitLogin = GitLogin(self.branches)  
-        GitLogin.show()
+        GitLogin = EasyGitApp()  
+        MakeGitEasy.show()
         sys.exit(app.exec_())
 
     def getBranchNames(self):
         os.chdir(self.textFile.toPlainText())
         self.command = 'git branch'
         self.output = commands.getstatusoutput('git branch')
-        self.branches = self.output
         for branch in self.output[1].split('\n'):
             branch = branch.lstrip("*")
             self.comboBranch.addItem(branch)
@@ -90,7 +68,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             self.output = commands.getstatusoutput('grep -i "machine github.com" ~/.netrc | wc -l')
             if self.output[1] == '0':
-                self.userLogin()
                 self.username = 'vijaynitrr'
                 self.password = 'vk@#9717'
                 self.pushLine = 'machine github.com login ' + self.username + ' password '+self.password
@@ -107,14 +84,3 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.output = commands.getstatusoutput(self.command)
             self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
             self.textOutput.moveCursor(QtGui.QTextCursor.End)
-
-
-def main():
-    app = QtWidgets.QApplication(sys.argv)  
-    MakeGitEasy = EasyGitApp()  
-    MakeGitEasy.show()  
-    sys.exit(app.exec_())  
-
-
-if __name__ == '__main__':  
-    main()  
