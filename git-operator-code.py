@@ -46,6 +46,9 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.command = 'git merge ' + self.mergeWithBranch
         self.output = commands.getstatusoutput(self.command)
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
+        self.command = 'git push -f origin' + self.currBranch
+        self.output = commands.getstatusoutput(self.command)
+        self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
 
     def userLogin(self):
         self.dialog = QtWidgets.QDialog()
@@ -54,7 +57,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.dialog.show()
         self.dialog.exec_()
         self.info = self.dialog.ui.details
-        print self.info
         self.username,self.password = self.info.split(" ")
 
     def getBranchNames(self):
