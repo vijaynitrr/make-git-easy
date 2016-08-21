@@ -48,5 +48,5 @@ class Ui_Dialog(object):
         self.textPassword.setPlaceholderText(_translate("Dialog", "Enter your github password"))
 
     def userDetails(self):
-        self.details = self.textName.toPlainText() + " " + self.textPassword.toPlainText()
+        self.details = self.textName.text() + " " + self.textPassword.text()
         self.Dialog.close()
