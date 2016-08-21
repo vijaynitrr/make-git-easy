@@ -2,6 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sys  
 import easyGit
 from GitMerge import Ui_Dialog as GitMergeInfo
+from GitLoginForm import Ui_Dialog as UserDetails
 import commands
 import GitMerge
 import GitLoginForm
@@ -14,6 +15,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
     def __init__(self, parent=None):
         super(self.__class__, self).__init__(parent)
         self.command = self.output = self.branches = ''
+        self.username = self.password = ''
         self.setupUi(self)
         self.fileBtn.clicked.connect(self.selectFile)
         self.pullBtn.clicked.connect(self.takePull)
@@ -37,7 +39,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.dialog.show()
         self.dialog.exec_()
         self.info = self.dialog.ui.info
-        print self.info
         self.currBranch,self.mergeWithBranch = self.info.split(" ")
         self.command = 'git checkout ' + self.currBranch
         self.output = commands.getstatusoutput(self.command)
@@ -47,10 +48,14 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
 
     def userLogin(self):
-        app = QtWidgets.QApplication(sys.argv)  
-        GitLogin = GitLogin(self.branches)  
-        GitLogin.show()
-        sys.exit(app.exec_())
+        self.dialog = QtWidgets.QDialog()
+        self.dialog.ui = UserDetails()
+        self.dialog.ui.setupUi(self.dialog)
+        self.dialog.show()
+        self.dialog.exec_()
+        self.info = self.dialog.ui.details
+        print self.info
+        self.username,self.password = self.info.split(" ")
 
     def getBranchNames(self):
         os.chdir(self.textFile.toPlainText())
@@ -91,8 +96,6 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
             self.output = commands.getstatusoutput('grep -i "machine github.com" ~/.netrc | wc -l')
             if self.output[1] == '0':
                 self.userLogin()
-                self.username = 'vijaynitrr'
-                self.password = 'vk@#9717'
                 self.pushLine = 'machine github.com login ' + self.username + ' password '+self.password
                 self.output = commands.getstatusoutput('echo ' + self.pushLine + ' | cat > ~/.netrc')
                 self.output = commands.getstatusoutput('chmod 0600 ~/.netrc')

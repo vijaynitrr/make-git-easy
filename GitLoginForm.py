@@ -10,6 +10,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
+        self.details = ''
         Dialog.setObjectName("Dialog")
         Dialog.setWindowModality(QtCore.Qt.WindowModal)
         Dialog.resize(372, 214)
@@ -49,6 +50,8 @@ class Ui_Dialog(object):
         self.label_2.setObjectName("label_2")
 
         self.retranslateUi(Dialog)
+        self.Dialog = Dialog
+        self.submitBtn.clicked.connect(self.userDetails)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):
@@ -60,3 +63,6 @@ class Ui_Dialog(object):
         self.label.setText(_translate("Dialog", "Username"))
         self.label_2.setText(_translate("Dialog", "Password"))
 
+    def userDetails(self):
+        self.details = self.textName.toPlainText() + " " + self.textPassword.toPlainText()
+        self.Dialog.close()
