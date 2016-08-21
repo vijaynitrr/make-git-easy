@@ -35,77 +35,6 @@
     <string>Submit</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textName">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>40</y>
-     <width>210</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="acceptDrops">
-    <bool>true</bool>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#textName {
-padding-left: 1px;
-padding-top: 1px;
-}</string>
-   </property>
-   <property name="inputMethodHints">
-    <set>Qt::ImhMultiLine</set>
-   </property>
-   <property name="frameShadow">
-    <enum>QFrame::Sunken</enum>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOff</enum>
-   </property>
-   <property name="sizeAdjustPolicy">
-    <enum>QAbstractScrollArea::AdjustIgnored</enum>
-   </property>
-   <property name="tabChangesFocus">
-    <bool>true</bool>
-   </property>
-   <property name="lineWrapMode">
-    <enum>QTextEdit::WidgetWidth</enum>
-   </property>
-   <property name="textInteractionFlags">
-    <set>Qt::TextEditable</set>
-   </property>
-   <property name="placeholderText">
-    <string>Enter your gitub username</string>
-   </property>
-  </widget>
-  <widget class="QTextEdit" name="textPassword">
-   <property name="geometry">
-    <rect>
-     <x>130</x>
-     <y>90</y>
-     <width>210</width>
-     <height>31</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">#textPassword {
-padding-left: 1px;
-padding-top: 1px;
-}</string>
-   </property>
-   <property name="inputMethodHints">
-    <set>Qt::ImhHiddenText|Qt::ImhMultiLine</set>
-   </property>
-   <property name="horizontalScrollBarPolicy">
-    <enum>Qt::ScrollBarAlwaysOff</enum>
-   </property>
-   <property name="tabChangesFocus">
-    <bool>true</bool>
-   </property>
-   <property name="placeholderText">
-    <string>Enter your github password</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
@@ -130,6 +59,38 @@ padding-top: 1px;
    </property>
    <property name="text">
     <string>Password</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="textName">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>40</y>
+     <width>210</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Normal</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Enter your github username</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="textPassword">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>90</y>
+     <width>210</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Enter your github password</string>
    </property>
   </widget>
  </widget>

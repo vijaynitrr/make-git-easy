@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 import sys  
 import easyGit
 from GitMerge import Ui_Dialog as GitMergeInfo
-from GitLoginForm import Ui_Dialog as UserDetails
+from GitUserLogin import Ui_Dialog as UserDetails
 import commands
 import GitMerge
 import GitLoginForm
