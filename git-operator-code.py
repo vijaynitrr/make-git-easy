@@ -46,7 +46,7 @@ class EasyGitApp(QtWidgets.QMainWindow, easyGit.Ui_MainWindow):
         self.command = 'git merge ' + self.mergeWithBranch
         self.output = commands.getstatusoutput(self.command)
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
-        self.command = 'git push -f origin' + self.currBranch
+        self.command = 'git push -f origin ' + self.currBranch
         self.output = commands.getstatusoutput(self.command)
         self.textOutput.append('> '+self.command+"\r\n"+self.output[1])
 
